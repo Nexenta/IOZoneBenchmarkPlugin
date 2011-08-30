@@ -1,3 +1,12 @@
+nmc-iozone-benchmark (40-0-0) unstable; urgency=low
+
+  * Migrated to NexentaStor 4.x
+  * Changed maintainer to Nexenta Systems
+  * Fixed debian/rules to use new debhelper
+  * Added top-level Makefile
+
+ -- Nexenta Systems <maintainer@nexenta.com>  Tue, 30 Aug 2011 18:59:53 +0400
+
 nmc-iozone-benchmark (1.1) elatte; urgency=low
 
   * grouping

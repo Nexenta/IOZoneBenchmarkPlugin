@@ -19,7 +19,7 @@
 # CDDL HEADER END
 #
 #
-# Copyright (C) 2006-2009 Nexenta Systems, Inc.
+# Copyright (C) 2005-2011 Nexenta Systems, Inc.
 # All rights reserved.
 #
 # METAFILE FOR NMS
@@ -27,15 +27,14 @@
 package Plugin::NmcIozoneBenchmark;
 use base qw(NZA::Plugin);
 
-$Plugin::CLASS				= 'NmcIozoneBenchmark';
+$Plugin::CLASS = 'NmcIozoneBenchmark';
 
-$Plugin::NmcIozoneBenchmark::NAME		= 'nmc-iozone-benchmark';
-$Plugin::NmcIozoneBenchmark::DESCRIPTION	= 'Iozone benchmark extension for NMC';
-$Plugin::NmcIozoneBenchmark::LICENSE		= 'Open Source (CDDL)';
-$Plugin::NmcIozoneBenchmark::AUTHOR		= 'Nexenta Systems, Inc';
-$Plugin::NmcIozoneBenchmark::VERSION		= '1.1';
-$Plugin::NmcIozoneBenchmark::GROUP		= '!iozone-benchmark';
-$Plugin::NmcIozoneBenchmark::LOADER		= 'Iozone.pm';
-@Plugin::NmcIozoneBenchmark::FILES		= ('Iozone.pm');
+$Plugin::NmcIozoneBenchmark::NAME          = 'nmc-iozone-benchmark';
+$Plugin::NmcIozoneBenchmark::DESCRIPTION   = 'Iozone benchmark extension for NMC';
+$Plugin::NmcIozoneBenchmark::LICENSE       = 'Open Source (CDDL)';
+$Plugin::NmcIozoneBenchmark::AUTHOR        = 'Nexenta Systems, Inc';
+$Plugin::NmcIozoneBenchmark::GROUP         = '!iozone-benchmark';
+$Plugin::NmcIozoneBenchmark::LOADER        = 'Iozone.pm';
+@Plugin::NmcIozoneBenchmark::FILES         = ('Iozone.pm');
 
 1;
