@@ -1,4 +1,4 @@
-#!/use/bin/make -f
+#!/use/bin/gmake -f
 
 CWD = $(shell pwd)
 CP = ln -s
@@ -11,13 +11,22 @@ install:
 	@$(MAKE) DEB_BUILD=1 CP='cp -d' deploy
 
 clean:
-	@rm -rf $(DESTDIR)/$(PLUGINDIR)
 
-deploy: deploy-dirs deploy-files
+deploy: deploy-clean deploy-dirs deploy-files
 
-deploy-dirs: clean
+deploy-dirs: deploy-clean
+	@echo "Deploing dirs..."
 	@mkdir -p $(DESTDIR)/$(PLUGINDIR)
 
 deploy-files: deploy-dirs
+	@echo "Deploing files..."
 	@$(CP) $(CWD)/metafile.pm $(DESTDIR)/$(PLUGINDIR)
 	@$(CP) $(CWD)/Iozone.pm $(DESTDIR)/$(PLUGINDIR)
+
+ifndef DEB_BUILD
+deploy-clean:
+	@echo "Cleaning up before deploing..."
+	@rm -rf $(DESTDIR)/$(PLUGINDIR)
+else
+deploy-clean:
+endif

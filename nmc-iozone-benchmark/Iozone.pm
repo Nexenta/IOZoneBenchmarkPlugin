@@ -19,7 +19,7 @@
 # CDDL HEADER END
 #
 #
-# Copyright (C) 2006-2009 Nexenta Systems, Inc.
+# Copyright (C) 2006-2011 Nexenta Systems, Inc.
 # All rights reserved.
 #
 
@@ -132,7 +132,7 @@ sub volume_benchmark
 		print_error("Cannot use volume '$vol' for benchmarking: not supported yet\n");
 		return 0;
 	}
-	
+
 	my $volumes = &NZA::volume->get_names('');
 	if (scalar @$volumes == 0) {
 		print_error("No volumes in the system - cannot nothing to benchmark\n");
@@ -144,7 +144,7 @@ sub volume_benchmark
 		print_out("Volume '$vol' is the only available volume, starting benchmark...\n");
 		sleep 1;
 	}
-	
+
 	my $prompt = "Please select a volume to benchmark for performance";
 	return 0 if (!NMC::Util::input_field("Select volume to run Iozone file I/O benchmark",
 					   0,
@@ -178,7 +178,7 @@ sub volume_benchmark
 				if ($needed_mb > $vol_avail_mb && 0) {
 					die "Volume '$vol' does not have enough free space to run '$benchmark_name'. Needed: approximately ${needed_mb}MB. Available: ${vol_avail_mb}MB.";
 				}
-				
+
 				$size = int($ram_total_mb / 2);
 			}
 			else {
@@ -200,9 +200,9 @@ sub volume_benchmark
 	print_out("$vol: running $mode mode benchmark\n");
 	print_out("$vol: generating ${size}MB files, using $block blocks\n");
 
-	# 
+	#
 	# Set output autoflush on
-	# 
+	#
 	my $oldfh = select(STDOUT); my $fl = $|; $| = 1; select($oldfh);
 
 	my $scratch_dir = "$vol/.nmc-iozone-benchmark";
@@ -211,7 +211,7 @@ sub volume_benchmark
 	my $curdir = getcwd();
 	chdir "$NZA::VOLROOT/$vol/.nmc-iozone-benchmark";
 	# ignore error - try to count what we have...
-	system("iozone -ec -r $block -s ${size}m -l $numprocs -i 0 -i 1 -i 8");
+	system("/usr/benchmarks/iozone/iozone -ec -r $block -s ${size}m -l $numprocs -i 0 -i 1 -i 8");
 
 	if (! $fl) {
 		$oldfh = select(STDOUT); $| = $fl; select($oldfh);
