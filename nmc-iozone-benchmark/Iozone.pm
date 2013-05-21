@@ -211,7 +211,7 @@ sub volume_benchmark
 	my $curdir = getcwd();
 	chdir "$NZA::VOLROOT/$vol/.nmc-iozone-benchmark";
 	# ignore error - try to count what we have...
-	system("/usr/benchmarks/iozone/iozone -ec -r $block -s ${size}m -l $numprocs -i 0 -i 1 -i 8");
+	system("/usr/bin/iozone -ec -r $block -s ${size}m -l $numprocs -i 0 -i 1 -i 8");
 
 	if (! $fl) {
 		$oldfh = select(STDOUT); $| = $fl; select($oldfh);
